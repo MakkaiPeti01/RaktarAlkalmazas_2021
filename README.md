@@ -1,0 +1,1 @@
+# RaktarAlkalmazas_2021
