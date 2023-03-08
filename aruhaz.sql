@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2021. Ápr 22. 12:38
--- Kiszolgáló verziója: 10.4.11-MariaDB
--- PHP verzió: 7.4.4
+-- Létrehozás ideje: 2021. Máj 29. 16:12
+-- Kiszolgáló verziója: 10.4.27-MariaDB
+-- PHP verzió: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Adatbázis: `aruhaz`
 --
+CREATE DATABASE IF NOT EXISTS `aruhaz` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_hungarian_ci;
+USE `aruhaz`;
 
 -- --------------------------------------------------------
 
@@ -29,11 +31,11 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `felhasznalok` (
   `id` int(11) NOT NULL,
-  `felhasznalonev` varchar(15) COLLATE utf8mb4_hungarian_ci NOT NULL,
-  `jelszo` varchar(15) COLLATE utf8mb4_hungarian_ci NOT NULL,
-  `jogkor` varchar(20) COLLATE utf8mb4_hungarian_ci NOT NULL,
+  `felhasznalonev` varchar(15) NOT NULL,
+  `jelszo` varchar(15) NOT NULL,
+  `jogkor` varchar(20) NOT NULL,
   `jogkor_id` int(11) NOT NULL,
-  `szemelyNeve` varchar(30) COLLATE utf8mb4_hungarian_ci NOT NULL
+  `szemelyNeve` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 --
@@ -53,7 +55,7 @@ INSERT INTO `felhasznalok` (`id`, `felhasznalonev`, `jelszo`, `jogkor`, `jogkor_
 
 CREATE TABLE `hustipusok` (
   `id` int(11) NOT NULL,
-  `nev` varchar(30) COLLATE utf8mb4_hungarian_ci NOT NULL
+  `nev` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 --
@@ -76,7 +78,7 @@ INSERT INTO `hustipusok` (`id`, `nev`) VALUES
 
 CREATE TABLE `kassza` (
   `id` int(11) NOT NULL,
-  `kassza_neve` varchar(20) COLLATE utf8mb4_hungarian_ci NOT NULL
+  `kassza_neve` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 --
@@ -96,7 +98,7 @@ INSERT INTO `kassza` (`id`, `kassza_neve`) VALUES
 
 CREATE TABLE `kategoriak` (
   `id` int(11) NOT NULL,
-  `kategoria_nev` varchar(30) COLLATE utf8mb4_hungarian_ci NOT NULL
+  `kategoria_nev` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 --
@@ -120,7 +122,7 @@ INSERT INTO `kategoriak` (`id`, `kategoria_nev`) VALUES
 --
 
 CREATE TABLE `sumseged` (
-  `nev` varchar(255) COLLATE utf8mb4_hungarian_ci NOT NULL,
+  `nev` varchar(255) NOT NULL,
   `osszeg` int(11) NOT NULL,
   `db` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
@@ -140,8 +142,8 @@ INSERT INTO `sumseged` (`nev`, `osszeg`, `db`) VALUES
 
 CREATE TABLE `termekek` (
   `id` int(11) NOT NULL,
-  `termek_nev` varchar(30) COLLATE utf8mb4_hungarian_ci NOT NULL,
-  `kivitel` varchar(30) COLLATE utf8mb4_hungarian_ci NOT NULL,
+  `termek_nev` varchar(30) NOT NULL,
+  `kivitel` varchar(30) NOT NULL,
   `kategoria_id` int(11) NOT NULL,
   `tipus_id` int(11) NOT NULL,
   `nettoAr` int(11) NOT NULL,
@@ -170,7 +172,7 @@ INSERT INTO `termekek` (`id`, `termek_nev`, `kivitel`, `kategoria_id`, `tipus_id
 
 CREATE TABLE `termektipusok` (
   `id` int(11) NOT NULL,
-  `tipus` varchar(30) COLLATE utf8mb4_hungarian_ci NOT NULL
+  `tipus` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 --
@@ -216,9 +218,9 @@ INSERT INTO `termektipusok` (`id`, `tipus`) VALUES
 
 CREATE TABLE `vasarlas` (
   `id` int(11) NOT NULL,
-  `termekek` varchar(255) COLLATE utf8mb4_hungarian_ci NOT NULL,
+  `termekek` varchar(255) NOT NULL,
   `osszeg` int(11) NOT NULL,
-  `datum` varchar(20) COLLATE utf8mb4_hungarian_ci NOT NULL
+  `datum` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 --
